@@ -1,3 +1,8 @@
+###PROBLEM SET 2###
+#Benjamin Schneider
+
+
+
 vec<-c(1245,925,1622,2101,42)
 x<-substr(vec, 1, 1)
 new<-table(x)
