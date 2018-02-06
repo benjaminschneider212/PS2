@@ -63,5 +63,29 @@ benford.function(a,F,F)
 
 #Problem 2
 
+print.benfords<-function(a){
+  output<-as.data.frame(benford.function(a,T,T)) 
+  pval<-benford.function(a,T,T)
+  if (0.851 < pval[1] & pval[1] < 0.967){
+    output$Leemis[1]<-paste(pval[1],"*" )}
+  if (0.967 <= pval[1] & pval[1] < 1.212){
+    output$Leemis[1]<-paste(pval[1],"**" )}
+  if (1.212<= pval[1] ){
+    output$Leemis[1]<-paste(pval[1],"***" )}
+  if (1.212 < pval[2] & pval[2] <1.330){
+    output$Cho-Gains[1]<-paste(pval[2],"*" )}
+  if (1.330 <= pval[2] & pval[2] < 1.569){
+    output$Cho-Gains[1]<-paste(pval[2],"**" )}
+  if (1.569 <= pval[2]){
+    output$Cho-Gains[1]<-paste(pval[2],"***" )}
+  print(output)
+  cat("Note: P-value <0.01 ***, <0.05 **, <0.1 *")
+}
+print.benfords(a)
 
-
+save<-function(a){#save that stuff
+  sink(file="benfordspvalues.csv")
+  print.benfords(a)
+  sink()
+}
+save(a)
