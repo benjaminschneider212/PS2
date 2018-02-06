@@ -64,30 +64,31 @@ benford.function(a,F,F) #neither printed
 
 
 #Problem 2
-
+#now for this, we are going to use the function above and transfer it into giving out *'s for the purpose 
+#of showing p values, all of the numbers below are from the chart.
 print.benfords<-function(a){
-  output<-as.data.frame(benford.function(a,T,T)) 
+  output<-as.data.frame(benford.function(a,T,T)) #saving the putput as data frame because stars may be included depending on significance
   pval<-benford.function(a,T,T)
-  if (0.851 < pval[1] & pval[1] < 0.967){
+  if (0.851 < pval[1] & pval[1] < 0.967){ #P-value for Leemis at p<.1
     output$Leemis[1]<-paste(pval[1],"*" )}
-  if (0.967 <= pval[1] & pval[1] < 1.212){
+  if (0.967 <= pval[1] & pval[1] < 1.212){ #P-value for Leemis at p<.05
     output$Leemis[1]<-paste(pval[1],"**" )}
-  if (1.212<= pval[1] ){
-    output$Leemis[1]<-paste(pval[1],"***" )}
-  if (1.212 < pval[2] & pval[2] <1.330){
+  if (1.212<= pval[1] ){ #Pval for Leemis at p<.01
+    output$Leemis[1]<-paste(pval[1],"***" )} 
+  if (1.212 < pval[2] & pval[2] <1.330){ #P-value for chogains at p<.1
     output$Cho-Gains[1]<-paste(pval[2],"*" )}
-  if (1.330 <= pval[2] & pval[2] < 1.569){
+  if (1.330 <= pval[2] & pval[2] < 1.569){#P-value for chogains at p<.05
     output$Cho-Gains[1]<-paste(pval[2],"**" )}
-  if (1.569 <= pval[2]){
+  if (1.569 <= pval[2]){ #P-value for chogains at p<.01
     output$Cho-Gains[1]<-paste(pval[2],"***" )}
   print(output)
-  cat("Note: P-value <0.01 ***, <0.05 **, <0.1 *")
+  cat("Legend: P-value <0.01 ***, <0.05 **, <0.1 *") #this is just a description to show what the stars mean
 }
-print.benfords(a)
+print.benfords(a) #example of output
 
-save<-function(a){#save that stuff
-  sink(file="benfordspvalues.csv")
-  print.benfords(a)
-  sink()
+save<-function(a){#function for saving the output of the function above with the input of a vector you want to run. Useful for for loops of multiple collections of vote returns.
+  sink(file="benfordspvalues.csv") #Create file
+  print.benfords(a) #choose output for file
+  sink() #put the two together
 }
-save(a)
+save(a) #the end
