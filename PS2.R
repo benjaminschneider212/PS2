@@ -1,9 +1,15 @@
-###PROBLEM SET 2###
-#Benjamin Schneider
+################################
+#########PROBLEM SET 2##########
+################################
+#######Benjamin Schneider#######
+################################
 
-#Problem 1
+###############
+###Problem 1###
+###############
 
 a<-c(345,6758,4563,5968,128,457,589,783,90,274,346) #Example of an input vector of vote returns. Just me typing random keys.
+
 leemis<-function(a){
   firstnumber<-as.numeric(substr(a, start=1, stop=1)) #this takes just the first number of the vector of vote totals and makes new vector.
   proportions<-NULL
@@ -19,9 +25,9 @@ leemis<-function(a){
   return(output)
 }
 
-leemis(a) #this is an example of running this function
+leemis(a) #this is an example of running this function with phoney data
 
-chovec<-NULL
+chovec<-NULL #empty vector to use for the function (the summation)
 chogains<-function(a){
   firstnumber<-as.numeric(substr(a, start=1, stop=1)) #this takes just the first number of the vector of vote totals and makes new vector.
   proportions<-NULL
@@ -32,7 +38,7 @@ chogains<-function(a){
   argument<-NULL
   for(i in 1:9){
     element<-((x_i[i]-log((1+1/i), base=10))^2) #calculation inside summation
-    chovec<-c(chovec,element)
+    chovec<-c(chovec,element) #here is where the summation is used for the null vector created above
     finalvec<-sum(chovec) #the summation
     output<-sqrt(finalvec)} #squre root of the summation
   return(output)
@@ -63,7 +69,10 @@ benford.function(a,T,T) #both printed
 benford.function(a,F,F) #neither printed
 
 
-#Problem 2
+###############
+###Problem 2###
+###############
+
 #now for this, we are going to use the function above and transfer it into giving out *'s for the purpose 
 #of showing p values, all of the numbers below are from the chart.
 print.benfords<-function(a){
@@ -92,3 +101,4 @@ save<-function(a){#function for saving the output of the function above with the
   sink() #put the two together
 }
 save(a) #the end
+
