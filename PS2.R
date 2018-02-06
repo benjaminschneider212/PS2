@@ -21,10 +21,8 @@ leemis<-function(a){
   return(maxfunc)
 }
 leemis(a) #this is an example of running this equation
-
-c<-a #transfering the vector
 chovec<-NULL
-chogains<-function(c){
+chogains<-function(a){
   b<-as.numeric(substr(a, start=1, stop=1)) 
   proportions<-NULL
   for (i in 1:9){
@@ -41,9 +39,27 @@ chogains<-function(c){
   }
   return(output)
 }
-chogains(c) #output is number of the output vector
+chogains(a) #output is number of the output vector
 
-#neither of the numbers ended up coming up as significant looking at the critical tables chart. This makes sense because I just made those values up.
+benford.function<-function(a,leemis,chogains){
+  if(leemis==T){
+    leemis<-leemis(a)} 
+  else{
+    leemis<-NULL}
+  if(chogains==T){
+    chogains<-chogains(a)} 
+  else{
+    chogains<-NULL}
+  digitdist<-table(as.numeric(substr(a, start=1, stop=1)))
+  answer<-list(leemis,chogains,digitdist) 
+  names(answer)<-c("Leemis", 'Cho-Gains', "Distribution of Digits")
+  return(answer)
+}
+benford.function(a,T,F)
+benford.function(a,F,T)
+benford.function(a,T,T)
+benford.function(a,F,F)
+
 
 #Problem 2
 
